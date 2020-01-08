@@ -43,7 +43,11 @@ export class PageComponent implements OnInit, OnDestroy {
         if (correspondingPage) {
           link = correspondingPage.find(el => el.lang === lang);
         }
-        this.router.navigateByUrl(link ? link.path : '/');
+        if (link.path !== this.pagePath) {
+          this.router.navigate([link ? link.path : '/'], { replaceUrl: true });
+        } else {
+          this.getPageContent();
+        }
       });
     });
   }
