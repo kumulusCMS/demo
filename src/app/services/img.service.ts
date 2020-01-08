@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import awsmobile from '../../../../aws-exports';
+import Amplify from 'aws-amplify';
+
+const awsmobile: any = Amplify.configure(false);
 
 export enum ImgFormat {
   ORIGINAL = 0,

@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  imgApi: 'https://d2w5i1mc3n3mtc.cloudfront.net/',
-  imgBucket: 's3ngcms-dev',
+  imgApi: 'https://dk5t1j367br79.cloudfront.net/',
 };
 
 /*
