@@ -1,0 +1,27 @@
+<div class="public-page bg">
+  <div class="simple-page" *ngIf="post">
+    <div class="container content-box">
+      <div *ngFor="let fieldValue of post.fieldValues">
+        <div [ngSwitch]="fieldValue.type">
+          <div *ngSwitchCase="'TEXT'"><h1>{{fieldValue.value}}</h1></div>
+          <div *ngSwitchCase="'DATE'"><p>{{fieldValue.value}}</p></div>
+          <div *ngSwitchCase="'PHONE'"><p>{{fieldValue.value}}</p></div>
+          <div *ngSwitchCase="'EMAIL'"><p>{{fieldValue.value}}</p></div>
+          <div *ngSwitchCase="'TEXTAREA'" class="textarea">
+            <div class="content">{{fieldValue.value}}</div>
+          </div>
+          <div *ngSwitchCase="'RICHEDITOR'">
+            <div class="content" [innerHTML]="fieldValue.value"></div>
+          </div>
+          <div *ngSwitchCase="'IMAGE'">
+            <div class="img">
+              <img-shell [key]="fieldValue.value" [format]="imgFormat"></img-shell>
+            </div>
+          </div>
+          <div *ngSwitchCase="'BLOG'">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

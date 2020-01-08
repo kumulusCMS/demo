@@ -1,0 +1,37 @@
+<!--<script src="../services/PageLoader.service.ts"></script>-->
+<div class="public public-ctn">
+  <header>
+    <nav class="navbar is-transparent">
+      <div class="container">
+        <div class="navbar-brand">
+          <a [routerLink]="['/']">
+            <img-shell [format]="imgFormat" [key]="logo"></img-shell>
+          </a>
+        </div>
+        <div class="navigation-items">
+          <div *ngFor="let navElement of navItems">
+            <a *ngIf="navElement?.activated" routerLinkActive="is-active" [routerLink]="['/', navElement?.path]" class="navbaritem"
+               [routerLinkActiveOptions]="{exact:false}">
+              {{navElement?.label}}
+            </a>
+          </div>
+          <div *ngIf="selectedLanguage && settings" class="select-box">
+            <select [value]="selectedLanguage" (change)="toggledLanguage($event)" class="select">
+              <option *ngFor="let lang of settings.languages" [value]="lang">{{lang}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer>
+    <app-footer>
+    </app-footer>
+  </footer>
+
+</div>

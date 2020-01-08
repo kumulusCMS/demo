@@ -1,0 +1,21 @@
+<div class="footer" *ngIf="displayedFooter">
+  <div class="content">
+    <div class="footer-logo"><img-shell [key]="displayedFooter.logo"></img-shell></div>
+    <div class="button-group">
+      <div class="btns contact-btn"><a href="{{'/' + displayedFooter.calltoactionContactUsLink}}">{{displayedFooter.calltoactionContactUs}}</a></div>
+      <div class="btns join-btn"><a href="{{'/' + displayedFooter.calltoactionJoinUsLink}}">{{displayedFooter.calltoactionJoinUs}}</a></div>
+    </div>
+    <div class="icons">
+<!--    TODO les icons -->
+<!--      {{displayedFooter.facebookLink}}-->
+<!--      {{displayedFooter.githubLink}}-->
+<!--      {{displayedFooter.linkedinLink}}-->
+<!--      {{displayedFooter.twitterLink}}-->
+    </div>
+    <div class="phone-number">{{displayedFooter.phoneNumber}}</div>
+    <div class="address"><a
+      href="https://www.google.ca/maps/place/Effenti/@46.767182,-71.311184,17z/data=!3m1!4b1!4m5!3m4!1s0x4cb890d694f6f49b:0xcbba9a26f77b1fd7!8m2!3d46.767182!4d-71.30899"
+      target="_blank" rel="noopener noreferrer">{{displayedFooter.address}}</a></div>
+
+  </div>
+</div>

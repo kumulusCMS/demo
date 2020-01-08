@@ -1,0 +1,90 @@
+.footer {
+  //bottom:0;
+  color: white;
+  background-color: rgba(0,0,0,0.8);
+  position: relative;
+  padding-top: 2.5em;
+  padding-bottom: 2.5em;
+
+  .content{
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    .footer-logo {
+      height: 4.5rem;
+      width: auto;
+      margin-bottom: 1em;
+
+      img {
+        height: 4.5rem;
+        max-height: none;
+        width: auto !important;
+      }
+    }
+
+    .button-group {
+      margin-top:2em;
+      margin-bottom: 2em;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+    .contact-btn {
+      text-transform: uppercase;
+      color: $effenti !important;
+      border: 2px solid $effenti;
+      padding: 1em;
+      margin-right: 1em;
+      a {
+        color: $effenti !important;
+      }
+    }
+    .join-btn {
+      text-transform: uppercase;
+      background-color: $effenti;
+      border: 2px solid $effenti;
+      padding: 1em;
+      margin-left: 1em;
+      a {
+        color: black;
+      }
+    }
+    .btns {
+      transition: all ease 0.3s;
+      font-size: 1rem;
+    }
+    .btns:hover {
+      background-color: white;
+      border: 2px solid white;
+      color: $effenti;
+    }
+
+    .icons {
+      margin-bottom: 2em;
+
+    }
+
+    .address {
+      margin-top: 1em;
+      font-size: 1.2em;
+      a {
+        color: #797979;
+      }
+      a:hover {
+        color: $effenti;
+      }
+    }
+
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
+
+}
+
+

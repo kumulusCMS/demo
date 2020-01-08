@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+// theme
+@import "./scss/theme/reset";
+@import "./scss/theme/colors";
+@import "./scss/theme/typo";
+@import "./scss/theme/button";
+
+// pages
+@import "./scss/pages/layout";
+@import "./scss/pages/footer";
+@import "./scss/pages/home";
+@import "./scss/pages/page";
+
+@import "./scss/components/post";

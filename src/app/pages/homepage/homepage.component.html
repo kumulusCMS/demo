@@ -1,0 +1,70 @@
+<div class="public-homepage" *ngIf="content">
+  <section class="bloc-equipe" [ngStyle]="{'background-image': 'url('+content?.coverImg?.value+')'}">
+    <div class="cover-ctn">
+      <div class="container">
+        <div class="red-square">
+          <h1>
+            <span>{{content?.title?.value}}</span>
+          </h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-lab-ctn">
+    <div class="container service-lab">
+      <a class="block lab" href="/lab">
+        <h2>Lab effenti</h2>
+        <div class="cover-ctn"></div>
+      </a>
+      <a class="block sc" href="/service-conseil">
+        <h2>Service conseil</h2>
+        <div class="cover-ctn"></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="bloc-recrutement" [ngStyle]="{'background-image': 'url('+content?.calltoactionCoverImage?.value+')'}">
+      <div class="cover-ctn">
+        <div class="container">
+          <h2>
+            <span>{{content?.calltoactionTitle?.value}}</span>
+          </h2>
+          <div class="btn-ctn">
+            <a class="btn is-transparent" href="{{content?.calltoactionButtonLink?.value}}">
+              {{content?.calltoactionButtonlabel?.value}}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="blog-roll">
+      <div class="blogroll-head">
+        <h2>
+          Blogue
+        </h2>
+        <a class="btn">Voir plus</a>
+      </div>
+      <div class="post-roll-container">
+        <div *ngFor="let post of posts" class="post-preview">
+          <div class="post-preview-content">
+            <div class="img-thumbnail" [ngStyle]="{'background-image': 'url('+post?.image?.value+')'}"></div>
+            <h3 class="post-title" [routerLink]="[post.typeName, post.path]">{{ post?.title?.value }}</h3>
+            <div class="post-date">{{post?.date | date: 'yyyy/MM/dd'}}</div>
+            <p class="post-description">
+              {{post?.description?.value}}
+            </p>
+          </div>
+          <div class="post-preview-actions">
+            <button class="btn" [routerLink]="[post.typeName, post.path]">En savoir plus</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="triangle-red-left is-relative"></div>
+</div>

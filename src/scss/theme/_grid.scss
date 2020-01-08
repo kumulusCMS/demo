@@ -1,0 +1,199 @@
+/**
+ * @author Gabriel Claveau-Baril <gclaveau@effenti.ca>
+*/
+
+$xl: '1200px';
+$lg: '992px';
+$md: '768px';
+$sm: '576px';
+
+.grid {
+  width: 100%;
+  max-width: 100%;
+  @media screen and (max-width: $sm) {
+    max-width: none !important;
+  }
+
+  /* Max-width ** number x 5rem ** */
+  &.mw10 {
+    max-width: 50rem;
+  }
+  &.mw9 {
+    max-width: 45rem;
+  }
+  &.mw8 {
+    max-width: 40rem;
+  }
+  &.mw7 {
+    max-width: 35rem;
+  }
+  &.mw6 {
+    max-width: 30rem;
+  }
+  &.mw5 {
+    max-width: 25rem;
+  }
+  &.mw4 {
+    max-width: 20rem;
+  }
+  &.mw3 {
+    max-width: 15rem;
+  }
+  &.mw2 {
+    max-width: 10rem;
+  }
+  &.mw1 {
+    max-width: 5rem;
+  }
+}
+/* Flex Container */
+.ctn-flex {
+  display: flex;
+}
+.sm-ctn-flex {
+  @media screen and (min-width: $sm) {
+    display: flex;
+  }
+}
+.md-ctn-flex {
+  @media screen and (min-width: $md) {
+    display: flex;
+  }
+}
+.lg-ctn-flex {
+  @media screen and (min-width: $lg) {
+    display: flex;
+  }
+}
+.xl-ctn-flex {
+  @media screen and (min-width: $xl) {
+    display: flex;
+  }
+}
+.sm-ctn-flex,
+.md-ctn-flex,
+.lg-ctn-flex,
+.xl-ctn-flex,
+.ctn-flex {
+  /* Flex Wrap */
+  &.wrap {
+    flex-wrap: wrap;
+  }
+  &.wrapReverse {
+    flex-wrap: wrap-reverse;
+  }
+
+  /* Flex-Direction */
+  &.fDirRow {
+    flex-direction: row;
+  }
+  &.fDirRowReverse {
+    flex-direction: row-reverse;
+  }
+  &.fDirColumn {
+    flex-direction: column;
+  }
+  &.fDirColumnReverse {
+    flex-direction: column-reverse;
+  }
+
+  /* Justify Content */
+  &.justStart {
+    justify-content: flex-start;
+  }
+  &.justEnd {
+    justify-content: flex-end;
+  }
+  &.justSpaceBetween {
+    justify-content: space-between;
+  }
+
+  /* Align-items */
+  &.alignStart {
+    align-items: flex-start;
+  }
+  &.alignEnd {
+    align-items: flex-end;
+  }
+  &.alignCenter {
+    align-items: center;
+  }
+  &.alignStretch {
+    align-items: stretch;
+  }
+
+  /* Spacing */
+  &.spacing {
+    .btn,
+    .mat-form-field {
+      &:not(:first-of-type){
+        margin-left: 0.5rem;
+      }
+      &:not(:last-of-type){
+        margin-right: 0.5rem;
+      }
+    }
+  }
+  &.field {
+    @media screen and (max-width: $sm) {
+      display: block;
+    }
+  }
+
+  .flex10 {
+    flex: 1 1 50rem;
+  }
+  .flex9 {
+    flex: 1 1 45rem;
+  }
+  .flex8 {
+    flex: 1 1 40rem;
+  }
+  .flex7 {
+    flex: 1 1 35rem;
+  }
+  .flex6 {
+    flex: 1 1 30rem;
+  }
+  .flex5 {
+    flex: 1 1 25rem;
+  }
+  .flex4 {
+    flex: 1 1 20rem;
+  }
+  .flex3 {
+    flex: 1 1 15rem;
+  }
+  .flex2 {
+    flex: 1 1 10rem;
+  }
+  .flex1 {
+    flex: 1 1 5rem;
+  }
+}
+
+/* Margin */
+.margB05 {
+  margin-bottom: 0.5rem !important;
+}
+.margB1 {
+  margin-bottom: 1rem !important;
+}
+.margT05 {
+  margin-top: 0.5rem !important;
+}
+.margT1 {
+  margin-top: 1rem !important;
+}
+.margL05 {
+  margin-left: 0.5rem !important;
+}
+.margL1 {
+  margin-left: 1rem !important;
+}
+.margR05 {
+  margin-right: 0.5rem !important;
+}
+.margR1 {
+  margin-right: 1rem !important;
+}

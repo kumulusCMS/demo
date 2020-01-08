@@ -1,0 +1,34 @@
+<div class="public-page bg">
+  <div *ngIf="content">
+    <div class="container">
+      <h1>{{content?.title?.value}}</h1>
+      <section>
+        <ng-container [ngSwitch]="content.description.type">
+          <p *ngSwitchCase="'TEXT'">{{content?.description?.value}}</p>
+          <p *ngSwitchCase="'TEXTAREA'">{{content?.description?.value}}</p>
+          <p *ngSwitchCase="'RICHEDITOR'" [innerHTML]="content?.description?.value"></p>
+          <ng-container *ngSwitchDefault>{{content?.description?.value | json}}</ng-container>
+        </ng-container>
+      </section>
+      <section class="container">
+        <div class="blog-roll">
+          <div class="post-roll-container">
+            <div *ngFor="let post of posts" class="post-preview">
+              <div class="post-preview-content">
+                <div class="img-thumbnail" [ngStyle]="{'background-image': 'url('+post?.image?.value+')'}"></div>
+                <h3 class="post-title" [routerLink]="[post.path]">{{ post?.title?.value }}</h3>
+                <div class="post-date">{{post?.date | date: 'yyyy/MM/dd'}}</div>
+                <p class="post-description">
+                  {{post?.description?.value}}
+                </p>
+              </div>
+              <div class="post-preview-actions">
+                <button class="btn" [routerLink]="[post.path]">En savoir plus</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

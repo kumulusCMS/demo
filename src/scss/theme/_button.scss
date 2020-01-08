@@ -1,0 +1,25 @@
+.public {
+  .btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 3.25rem;
+  min-width: 8rem;
+  box-sizing: border-box;
+  border: 4px solid $effenti;
+  padding: 0 1rem;
+
+  font-family: 'Roboto', sans-serif;
+  font-size: .875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: $effenti;
+  transition: all ease .3s;
+}
+  .btn:hover {
+    background-color: $effenti;
+    color: white;
+  }
+}
+
+
