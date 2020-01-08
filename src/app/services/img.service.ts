@@ -37,7 +37,7 @@ export class ImgService {
         key: `public/${key}`,
         edits: {
           resize: {
-            width: 200,
+            width: 400,
             fit: 'contain',
           },
         },
