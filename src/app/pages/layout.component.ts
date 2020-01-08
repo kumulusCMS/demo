@@ -9,7 +9,7 @@ import { ModuleLoaderService } from '../services/module-loader.service';
   templateUrl: './layout.component.html',
 })
 export class LayoutComponent implements OnInit {
-  private settings: SettingsModel;
+  public settings: SettingsModel;
   public navItems;
   public selectedLanguage;
   public imgFormat = ImgFormat.ORIGINAL;

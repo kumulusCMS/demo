@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ImgFormat, ImgService } from '../../services/img.service';
-import { DataReadService } from '@kumulus/ng-core';
+import { DataReadService, ImgFormat, PublicHelpersService } from '@kumulus/ng-core';
 import { SettingsService } from '../../services/settings.service';
 import { Subscription } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-page',
@@ -19,10 +19,10 @@ export class PageComponent implements OnInit, OnDestroy {
 
   constructor(
     private dataRService: DataReadService,
+    private dataHelper: PublicHelpersService,
     private router: Router,
     private route: ActivatedRoute,
-    private settingsService: SettingsService,
-    private imgService: ImgService
+    private settingsService: SettingsService
   ) {}
 
   public ngOnInit(): void {
@@ -55,19 +55,12 @@ export class PageComponent implements OnInit, OnDestroy {
       .then(res => {
         if (res.length > 0) {
           this.pid = res[0].pid;
-          this.content = {};
-          for (const el of res[0].fieldValues) {
-            const val =
-              typeof el.value === 'string' && el.type === 'IMAGE'
-                ? this.imgService.getImage(ImgFormat.ORIGINAL, el.value)
-                : el.value;
-            this.content[el.label] = {
-              type: el.type,
-              value: val,
-            };
-            if (typeof el.value === 'string' && el.type === 'BLOG') {
-              this.getBlogPostRoll(el.value);
-            }
+          this.content = this.dataHelper.formatPage(res[0], ImgFormat.ORIGINAL, environment.imgApi);
+          console.log(this.content);
+          if (this.content.blog) {
+            this.getBlogPostRoll(this.content.blog.value);
+          } else if (this.content.realisations) {
+            this.getBlogPostRoll(this.content.realisations.value);
           }
         } else {
           this.router.navigateByUrl('/');
@@ -81,22 +74,7 @@ export class PageComponent implements OnInit, OnDestroy {
       .getPostsByPostRollType(name, this.activeLang)
       .then(res => {
         this.posts = res.map(post => {
-          const postContent = {
-            path: post.path,
-            date: post.date,
-            typeName: post.typeName,
-          };
-          for (const el of post.fieldValues) {
-            const val =
-              typeof el.value === 'string' && el.type === 'IMAGE'
-                ? this.imgService.getImage(ImgFormat.THUMBNAIL, el.value)
-                : el.value;
-            postContent[el.label] = {
-              type: el.type,
-              value: val,
-            };
-          }
-          return postContent;
+          return this.dataHelper.formatPost(post, ImgFormat.THUMBNAIL, environment.imgApi);
         });
       })
       .catch(err => console.log(err));

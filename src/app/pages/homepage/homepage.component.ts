@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ImgFormat, ImgService } from '../../services/img.service';
-import { DataReadService } from '@kumulus/ng-core';
+import { ImgService } from '../../services/img.service';
+import { DataReadService, PublicHelpersService, ImgFormat } from '@kumulus/ng-core';
 import { SettingsService } from '../../services/settings.service';
 import { Subscription } from 'rxjs';
-import { HomepageTemplate, PageLoaderService } from '../../services/PageLoader.service';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-homepage',
@@ -13,12 +13,12 @@ import { Router } from '@angular/router';
 export class HomepageComponent implements OnInit, OnDestroy {
   public content: any;
   public posts: any[];
-  public imgFormat: ImgFormat.ORIGINAL;
   public activeLang;
   private langSubscription: Subscription;
 
   constructor(
     private dataRService: DataReadService,
+    private dataHelpers: PublicHelpersService,
     private router: Router,
     private imgService: ImgService,
     private settingsService: SettingsService
@@ -40,21 +40,8 @@ export class HomepageComponent implements OnInit, OnDestroy {
     this.dataRService
       .getPages('homepage', this.activeLang)
       .then(res => {
-        this.content = {};
-        for (const el of res[0].fieldValues) {
-          const val =
-            typeof el.value === 'string' && el.type === 'IMAGE'
-              ? this.imgService.getImage(ImgFormat.ORIGINAL, el.value)
-              : el.value;
-          this.content[el.label] = {
-            type: el.type,
-            value: val,
-          };
-          if (typeof el.value === 'string' && el.type === 'BLOG') {
-            this.getBlogPostRoll(el.value);
-          }
-        }
-        console.log(this.content);
+        this.content = this.dataHelpers.formatPage(res[0], ImgFormat.ORIGINAL, environment.imgApi);
+        this.getBlogPostRoll(this.content.blog.value);
       })
       .catch(err => console.log(err));
   }
@@ -64,30 +51,10 @@ export class HomepageComponent implements OnInit, OnDestroy {
       .getPostsByPostRollType(name, this.activeLang, 2)
       .then(res => {
         this.posts = res.map(post => {
-          console.log(post);
-          const postContent = {
-            path: post.path,
-            date: post.date,
-            typeName: post.typeName,
-          };
-          for (const el of post.fieldValues) {
-            const val =
-              typeof el.value === 'string' && el.type === 'IMAGE'
-                ? this.imgService.getImage(ImgFormat.THUMBNAIL, el.value)
-                : el.value;
-            postContent[el.label] = {
-              type: el.type,
-              value: val,
-            };
-          }
-          return postContent;
+          return this.dataHelpers.formatPost(post, ImgFormat.THUMBNAIL, environment.imgApi);
         });
       })
       .catch(err => console.log(err));
-  }
-
-  public onPostClick(path: string) {
-    this.router.navigateByUrl('/' + this.content.path + '/' + path);
   }
 
   public ngOnDestroy(): void {
